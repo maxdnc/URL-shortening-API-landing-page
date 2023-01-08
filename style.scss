@@ -75,6 +75,7 @@ $Red: hsl(0, 87%, 67%);
 //Neutral
 
 $Gray: hsl(0, 0%, 75%);
+$light-Gray: #f0f1f6;
 $Grayish-Violet: hsl(257, 7%, 63%);
 $Very-Dark-Blue: hsl(255, 11%, 22%);
 $Very-Dark-Violet: hsl(260, 8%, 14%);
@@ -109,6 +110,7 @@ header {
     margin: 0 4rem;
   }
 }
+
 // HEADER //
 
 .logo-header path {
@@ -120,7 +122,6 @@ header {
   align-items: center;
   margin: 2rem 0;
   @include larger-screen() {
-    justify-content: inherit;
     gap: 3rem;
   }
 }
@@ -206,6 +207,7 @@ header {
     color: $Grayish-Violet;
     font-weight: 700;
     font-size: 1rem;
+    transition: color 0.2s ease-in-out;
     &:hover {
       color: $Dark-Violet;
     }
