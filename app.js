@@ -33,19 +33,23 @@ function isValidUrl(str) {
 function checkURL() {
   const urlValue = inputURL.value.trim();
   const error = document.querySelector("#js-error-msg");
+  const placeholder = document.querySelector(".link-input::placeholder");
 
   if (urlValue === "") {
     error.innerText = "Please add a link";
     error.classList.add("active");
     inputURL.classList.add("active");
+    placeholder.classList.add("active");
   } else if (!isValidUrl(urlValue)) {
     error.innerText = "Link is not correct !";
     error.classList.add("active");
     inputURL.classList.add("active");
+    placeholder.classList.add("active");
   } else {
     error.innerText = "";
     error.classList.remove("active");
     inputURL.classList.remove("active");
+    placeholder.classList.remove("active");
   }
 }
 
