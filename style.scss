@@ -80,8 +80,9 @@ $Very-Dark-Blue: hsl(255, 11%, 22%);
 $Very-Dark-Violet: hsl(260, 8%, 14%);
 
 // breakpoint //
+
 @mixin larger-screen {
-  @media (min-width: 47rem) {
+  @media (min-width: 58.125rem) {
     @content;
   }
 }
@@ -92,13 +93,24 @@ $Very-Dark-Violet: hsl(260, 8%, 14%);
 
 body {
   font-family: "Poppins", sans-serif;
-  @include larger-screen {
-  }
 }
 
 // STYLE //
-
+main,
+header {
+  margin: 0 1rem;
+  @include larger-screen() {
+    margin: auto;
+    max-width: 95rem;
+  }
+}
+.block {
+  @include larger-screen() {
+    margin: 0 4rem;
+  }
+}
 // HEADER //
+
 .logo-header path {
   fill: $Dark-Violet;
 }
@@ -106,7 +118,11 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 2rem 1rem;
+  margin: 2rem 0;
+  @include larger-screen() {
+    justify-content: inherit;
+    gap: 3rem;
+  }
 }
 // hamburger //
 .hamburger {
@@ -165,19 +181,42 @@ body {
   transform: translateX(-50%);
   visibility: hidden;
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
   &.active {
     opacity: 1;
     visibility: visible;
+  }
+  @include larger-screen {
+    visibility: visible;
+    opacity: 1;
+    position: initial;
+    background-color: transparent;
+    transform: translateX(0);
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
 .wrap-menu a {
   color: $white;
   font-weight: 700;
+  @include larger-screen {
+    color: $Grayish-Violet;
+    font-weight: 700;
+    font-size: 1rem;
+    &:hover {
+      color: $Dark-Violet;
+    }
+  }
 }
 .wrap-menu li {
   width: 100%;
   text-align: center;
+  @include larger-screen() {
+    width: inherit;
+  }
 }
 
 .wrap-menu ul {
@@ -186,6 +225,9 @@ body {
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  @include larger-screen() {
+    flex-direction: row;
+  }
 }
 
 .btn {
@@ -203,6 +245,13 @@ body {
   padding: 0.5rem 0;
   width: 100%;
   border-radius: 2rem;
+
+  @include larger-screen() {
+    color: $white !important;
+    padding: 0.5rem;
+    width: inherit;
+    padding: 0.5rem 1rem;
+  }
 }
 
 .menu-link::after {
@@ -212,16 +261,39 @@ body {
   opacity: 0.5;
   margin-block: 1rem;
   background: $Grayish-Violet;
+  @include larger-screen() {
+    display: none;
+  }
 }
 
 // more than just section //
+.human-working-wrap {
+  background-image: url(images/illustration-working.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top left;
+  width: 100%;
+  min-height: 20rem;
+  @include larger-screen() {
+    max-width: 30rem;
+    background-size: contain;
+  }
+}
+/*
 .working-human {
   margin: 1rem 1rem 2rem 1rem;
   width: 140%;
   height: auto;
   padding-left: 40%;
   max-width: 140%;
+  @include larger-screen {
+    padding-left: 0;
+    margin: 0;
+    width: 50%;
+    max-width: 50rem;
+  }
 }
+*/
 
 .more-than-just {
   position: relative;
@@ -230,17 +302,36 @@ body {
   align-items: center;
   flex-direction: column;
   text-align: center;
-  gap: 1rem;
-  margin: 2rem 1rem;
+  gap: 2rem;
+  margin: 2rem 0;
   overflow: hidden;
+  @include larger-screen {
+    flex-direction: row-reverse;
+    text-align: left;
+    padding-block: 3rem;
+  }
 }
 
+.wrapper-more-than {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  @include larger-screen {
+    align-items: flex-start;
+    flex-grow: 2;
+  }
+}
 .more-than-just h1 {
   font-weight: 700;
   color: $Dark-Violet;
   font-size: 2rem;
   line-height: 2.25rem;
   letter-spacing: -1px;
+  @include larger-screen {
+    font-size: 4rem;
+    line-height: 5rem;
+  }
 }
 
 .more-than-just p {
@@ -261,12 +352,20 @@ body {
   background-position-y: top;
   border-radius: 0.5rem;
   background-color: $Dark-Violet;
-  margin: 1rem;
+  margin: 1rem 0;
+  gap: 1.25rem;
+  @include larger-screen() {
+    flex-direction: row;
+    padding: 2rem;
+    background-image: url(images/bg-shorten-desktop.svg);
+    background-position-x: center;
+    background-position-y: center;
+  }
 }
 
 .link-input {
   width: 100%;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   border: 0;
   outline: 0;
   font-family: inherit;
@@ -274,19 +373,25 @@ body {
   padding-left: 1rem;
   box-sizing: border-box;
   font-size: 1.125rem;
-  margin-bottom: 1rem;
+  &::placeholder {
+    color: $Gray;
+  }
+
   &.active {
     border: 2px solid $Red;
     margin-bottom: 0;
+    &::placeholder {
+      color: $Red;
+    }
   }
-}
-
-.link-input::placeholder {
-  color: $Gray;
+  @include larger-screen() {
+    padding-block: 1rem;
+  }
 }
 
 .wrap-form {
   width: 100%;
+  position: relative;
 }
 
 .error-msg {
@@ -294,6 +399,9 @@ body {
   font-style: italic;
   color: $Red;
   visibility: hidden;
+  position: absolute;
+  left: 0;
+  bottom: -1.1rem;
   &.active {
     visibility: visible;
   }
@@ -311,7 +419,11 @@ body {
   font-weight: 700;
   color: $white;
   font-size: 1.125rem;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
+  @include larger-screen() {
+    max-width: 10rem;
+    padding-block: 1rem;
+  }
 }
 
 // section statistics //
@@ -330,25 +442,63 @@ body {
   font-weight: 700;
   color: $Dark-Violet;
   letter-spacing: -1px;
+  @include larger-screen() {
+    font-size: 3rem;
+  }
 }
 
 .statistics p {
   color: $Grayish-Violet;
+  @include larger-screen() {
+    max-width: 45ch;
+  }
 }
 
 // section arguement //
 .argument-section {
-  margin: 3rem 1rem 3rem 1rem;
+  margin: 3rem 0;
   display: flex;
   flex-direction: column;
   gap: 6rem;
+  @include larger-screen() {
+    flex-direction: row;
+    gap: 3rem;
+    margin: auto;
+    height: 100%;
+    padding-block: 4rem;
+    min-height: 20rem;
+    justify-content: space-between;
+
+    gap: 4%;
+    max-width: 95rem;
+  }
 }
+.box-argu:nth-child(1) {
+  @include larger-screen() {
+    align-self: start;
+  }
+}
+.box-argu:nth-child(2) {
+  @include larger-screen() {
+    align-self: center;
+  }
+}
+.box-argu:nth-child(3) {
+  @include larger-screen() {
+    align-self: end;
+  }
+}
+
 .argument-section .box-argu {
   background-color: $white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.09);
   padding: 2rem;
   position: relative;
   border-radius: 0.5rem;
+  @include larger-screen() {
+    max-width: 20rem;
+    max-height: 18rem;
+  }
 }
 
 .box-argu:nth-child(2) {
@@ -362,6 +512,12 @@ body {
     left: 50%;
     transform: translate(-50%, -100%);
     z-index: -1;
+    @include larger-screen() {
+      width: 100%;
+      height: 0.5rem;
+      top: 40%;
+      left: 0;
+    }
   }
 
   &::after {
@@ -374,18 +530,30 @@ body {
     left: 50%;
     transform: translate(-50%, 100%);
     z-index: -1;
+    @include larger-screen() {
+      width: 100%;
+      height: 0.5rem;
+      bottom: 60%;
+      left: 100%;
+    }
   }
 }
 
 .box-argu p {
   text-align: center;
   color: $Grayish-Violet;
+  @include larger-screen() {
+    text-align: left;
+  }
 }
 .box-argu h3 {
   text-align: center;
   margin: 2rem 0 1rem 0;
   color: $Dark-Violet;
   letter-spacing: -1px;
+  @include larger-screen() {
+    text-align: left;
+  }
 }
 .icon-argument {
   transform: scale(0.8);
@@ -402,6 +570,9 @@ body {
   top: 0;
   left: 50%;
   transform: translate(-50%, -50%);
+  @include larger-screen() {
+    left: 25%;
+  }
 }
 
 // section boost //
@@ -417,6 +588,9 @@ body {
   justify-content: center;
   align-items: center;
   background-color: $Dark-Violet;
+  @include larger-screen() {
+    background-image: url(images/bg-boost-desktop.svg);
+  }
 }
 
 .boost-section h2 {
@@ -433,6 +607,7 @@ body {
   border-radius: 2rem;
   padding: 0.75rem 2rem 0.75rem 2rem;
   font-size: 1.125rem;
+  max-width: 7rem;
   &:hover {
     background: $Cyan-white;
   }
@@ -445,7 +620,7 @@ footer {
 footer h5 {
   color: white;
   font-size: 1.125rem;
-  margin: 1rem;
+  margin: 1rem 0 1rem 0;
   font-weight: 700;
 }
 
@@ -454,6 +629,10 @@ footer h5 {
   justify-content: center;
   gap: 1.5rem;
   padding-block: 2rem;
+  @include larger-screen() {
+    padding-block: 1rem;
+    gap: 1rem;
+  }
 }
 
 .nav-footer {
@@ -462,6 +641,12 @@ footer h5 {
   justify-content: center;
   align-items: center;
   padding-block: 2rem;
+  @include larger-screen() {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 8%;
+    margin: auto;
+  }
 }
 
 footer a {
@@ -484,8 +669,17 @@ footer a {
 
 footer li {
   text-align: center;
-  margin: 0.5rem;
+  margin: 0.5rem 0 0.5rem 0;
+  @include larger-screen() {
+    text-align: left;
+  }
 }
 .logo-footer {
-  padding: 1rem;
+  padding-block: 1rem;
+}
+
+.wrapper-logo {
+  @include larger-screen() {
+    max-width: 23rem;
+  }
 }
