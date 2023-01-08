@@ -93,7 +93,6 @@ header {
 }
 @media (min-width: 58.125rem) {
   .wrapper-header {
-    justify-content: inherit;
     gap: 3rem;
   }
 }
@@ -183,6 +182,7 @@ header {
     color: hsl(257deg, 7%, 63%);
     font-weight: 700;
     font-size: 1rem;
+    transition: color 0.2s ease-in-out;
   }
   .wrap-menu a:hover {
     color: hsl(257deg, 27%, 26%);
