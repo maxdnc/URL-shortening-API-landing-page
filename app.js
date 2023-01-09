@@ -64,12 +64,29 @@ function checkURL() {
       resultLink.innerHTML = ` <a class="yourlink" href="${originalLink}"> ${originalLink} </a>
       <div class="bar-link">
       <a class="ourlink" href="${shortLink}"> ${shortLink} </a>
-      <button class="copybutton btn" type="button">Copy</button></div>`;
+      <button  class="copybutton btn" type="button">Copy</button></div>`;
+
+      // button copy function //
+      const copybutton = document.querySelectorAll(".copybutton");
+      console.log(copybutton);
+      async function fCopy(data) {
+        let copyText = document.querySelector(".ourlink");
+
+        copyText[0].select();
+        copyText.setSelectionRange(0, 99999);
+
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(copyText.value);
+
+        // Alert the copied text
+        alert("Copied the text: " + copyText.value);
+      }
+      copybutton.addEventListener("click", () => {
+        console.log("hello");
+      });
     }
   });
 }
-
-// button copy link //
 
 //button shorton it //
 const shorten = document.querySelector("#js-shorten");
