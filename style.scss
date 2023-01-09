@@ -501,6 +501,9 @@ header {
     height: 2.5rem;
     align-self: center;
   }
+  &.active {
+    background-color: $Very-Dark-Blue;
+  }
 }
 // section statistics //
 

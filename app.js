@@ -86,6 +86,12 @@ function checkURL() {
         element.addEventListener("click", () => {
           fCopy();
           console.log("hello");
+          element.classList.add("active");
+          element.innerText = "Copied!";
+          setTimeout(() => {
+            element.classList.remove("active");
+            element.innerText = "Copy";
+          }, "2000");
         });
       });
     }

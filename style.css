@@ -525,6 +525,9 @@ header {
     align-self: center;
   }
 }
+.copybutton.active {
+  background-color: hsl(255deg, 11%, 22%);
+}
 
 .statistics {
   padding-block: 3rem;
