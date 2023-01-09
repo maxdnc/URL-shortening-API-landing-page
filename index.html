@@ -75,28 +75,31 @@
           </div>
         </section>
 
-        <form id="link-shorten" class="link-shorten-form" method="get">
-          <div class="wrap-form">
-            <label for="link-input" hidden>Shorten a link here</label>
+        <section class="shorten" id="js-shorten">
+          <form id="link-shorten" class="link-shorten-form" method="get">
+            <div class="wrap-form">
+              <label for="link-input" hidden>Shorten a link here</label>
+              <input
+                type="text"
+                class="link-input"
+                id="link-input"
+                placeholder="Shorten a link here..."
+              />
+              <small
+                id="js-error-msg"
+                class="error-msg"
+                aria-live="polite"
+              ></small>
+            </div>
             <input
-              type="text"
-              class="link-input"
-              id="link-input"
-              placeholder="Shorten a link here..."
+              type="submit"
+              value="Shorten it!"
+              class="link-button btn"
+              id="js-shorten"
             />
-            <small
-              id="js-error-msg"
-              class="error-msg"
-              aria-live="polite"
-            ></small>
-          </div>
-          <input
-            type="submit"
-            value="Shorten it!"
-            class="link-button btn"
-            id="js-shorten"
-          />
-        </form>
+          </form>
+          <div class="result-link" id="result-link"></div>
+        </section>
 
         <section class="statistics">
           <h2>Advanced statistics</h2>
