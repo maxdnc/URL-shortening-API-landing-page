@@ -33,21 +33,43 @@ function isValidUrl(str) {
 function checkURL() {
   const urlValue = inputURL.value.trim();
   const error = document.querySelector("#js-error-msg");
+  const shortenLink = async () => {
+    const res = await fetch(`https://api.shrtco.de/v2/shorten?url=${urlValue}`);
+    const data = await res.json();
 
-  if (urlValue === "") {
-    error.innerText = "Please add a link";
-    error.classList.add("active");
-    inputURL.classList.add("active");
-  } else if (!isValidUrl(urlValue)) {
-    error.innerText = "Link is not correct !";
-    error.classList.add("active");
-    inputURL.classList.add("active");
-  } else {
-    error.innerText = "";
-    error.classList.remove("active");
-    inputURL.classList.remove("active");
-  }
+    return data;
+  };
+
+  shortenLink().then((data) => {
+    if (data.error_code === 1) {
+      error.innerText = "No url parameter set";
+      error.classList.add("active");
+      inputURL.classList.add("active");
+    } else if (data.error_code > 1) {
+      error.innerText = "Invalid URL submitted";
+      error.classList.add("active");
+      inputURL.classList.add("active");
+    } else {
+      inputURL.value = "";
+      error.innerText = "";
+      error.classList.remove("active");
+      inputURL.classList.remove("active");
+      const shortLink = data.result.short_link;
+      const originalLink = data.result.original_link;
+      const sectionLink = document.querySelector("#result-link");
+      const resultLink = document.createElement("div");
+      resultLink.setAttribute("class", "shortened-link");
+      sectionLink.appendChild(resultLink);
+      // add html code for box for link //
+      resultLink.innerHTML = ` <a class="yourlink" href="${originalLink}"> ${originalLink} </a>
+      <div class="bar-link">
+      <a class="ourlink" href="${shortLink}"> ${shortLink} </a>
+      <button class="copybutton btn" type="button">Copy</button></div>`;
+    }
+  });
 }
+
+// button copy link //
 
 //button shorton it //
 const shorten = document.querySelector("#js-shorten");

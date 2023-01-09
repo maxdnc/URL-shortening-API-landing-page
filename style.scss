@@ -362,6 +362,7 @@ header {
     background-image: url(images/bg-shorten-desktop.svg);
     background-position-x: center;
     background-position-y: center;
+    background-size: cover;
   }
 }
 
@@ -427,7 +428,80 @@ header {
     padding-block: 1rem;
   }
 }
+.resul-link {
+  margin-block: 1rem;
+}
+.shortened-link {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  width: calc(100%);
+  padding-block: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.09);
+  border-radius: 0.5rem;
+  margin-block: 1rem;
+  @include larger-screen() {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-block: 0.5rem;
+  }
+}
+.yourlink {
+  color: $Very-Dark-Blue;
+  position: relative;
+  margin: 0 1rem;
+  padding-bottom: 1rem;
+  width: calc(90%);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  @include larger-screen() {
+    padding-bottom: 0;
+  }
+}
 
+.bar-link {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-top: 2px solid $light-Gray;
+  @include larger-screen() {
+    border-top: none;
+    flex-direction: row;
+  }
+}
+.ourlink {
+  margin: 0 1rem;
+  padding-block: 1rem;
+  color: $Cyan;
+  width: calc(90%);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  @include larger-screen() {
+    text-align: right;
+  }
+}
+.copybutton {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  font: inherit;
+  background: $Cyan;
+  border: transparent;
+  border-radius: 0.25rem;
+  z-index: 110;
+  color: $white;
+  transition: all 0.2s ease-in-out;
+  padding-block: 0.5rem;
+  margin: 0 1rem;
+  cursor: pointer;
+  @include larger-screen() {
+    padding: 0 2rem;
+    height: 2.5rem;
+    align-self: center;
+  }
+}
 // section statistics //
 
 .statistics {
