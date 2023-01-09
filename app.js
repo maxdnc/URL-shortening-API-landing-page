@@ -63,26 +63,30 @@ function checkURL() {
       // add html code for box for link //
       resultLink.innerHTML = ` <a class="yourlink" href="${originalLink}"> ${originalLink} </a>
       <div class="bar-link">
+      <input style="opacity: 0; position: absolute; right: 1000px;" value="${shortLink}" ></input>
       <a class="ourlink" href="${shortLink}"> ${shortLink} </a>
       <button  class="copybutton btn" type="button">Copy</button></div>`;
 
       // button copy function //
       const copybutton = document.querySelectorAll(".copybutton");
-      console.log(copybutton);
-      async function fCopy(data) {
-        let copyText = document.querySelector(".ourlink");
+      const copyText = document.querySelectorAll(".ourlink");
 
-        copyText[0].select();
-        copyText.setSelectionRange(0, 99999);
-
-        // Copy the text inside the text field
-        navigator.clipboard.writeText(copyText.value);
-
-        // Alert the copied text
-        alert("Copied the text: " + copyText.value);
+      async function fCopy() {
+        for (element of copyText) {
+          try {
+            await navigator.clipboard.writeText(element.innerText);
+          } catch (err) {
+            console.error("Failed to copy: ", err);
+          }
+          console.log(element.innerText);
+        }
       }
-      copybutton.addEventListener("click", () => {
-        console.log("hello");
+
+      copybutton.forEach((element) => {
+        element.addEventListener("click", () => {
+          fCopy();
+          console.log("hello");
+        });
       });
     }
   });
@@ -96,3 +100,15 @@ formShorten.addEventListener("submit", (e) => {
   e.preventDefault();
   checkURL();
 });
+
+/*
+function fCopy() {
+  const copybutton = document.querySelectorAll(".copybutton");
+  const copyText = document.querySelectorAll(".ourlink");
+  const shorterCopy = copyText.previousElementSibling;
+  for (element of copyText) {
+    element.innerText.select();
+    document.execCommand("copy");
+    console.log(shorterCopy);
+  }
+}*/
