@@ -17,7 +17,7 @@ hamburger.addEventListener("click", () => {
 
 // valid url form //
 const inputURL = document.querySelector("#link-input");
-
+/*
 function isValidUrl(str) {
   const pattern = new RegExp(
     "^([a-zA-Z]+:\\/\\/)?" + // protocol
@@ -29,14 +29,14 @@ function isValidUrl(str) {
     "i"
   );
   return pattern.test(str);
-}
+}*/
+
 function checkURL() {
   const urlValue = inputURL.value.trim();
   const error = document.querySelector("#js-error-msg");
   const shortenLink = async () => {
     const res = await fetch(`https://api.shrtco.de/v2/shorten?url=${urlValue}`);
     const data = await res.json();
-
     return data;
   };
 
@@ -67,21 +67,6 @@ function checkURL() {
       <a class="ourlink" href="${shortLink}"> ${shortLink} </a>
       <button  class="copybutton btn" type="button">Copy</button></div>`;
 
-      // button copy function //
-      const copybutton = document.querySelectorAll(".copybutton");
-      const copyText = document.querySelectorAll(".ourlink");
-
-      async function fCopy() {
-        for (element of copyText) {
-          try {
-            await navigator.clipboard.writeText(element.innerText);
-          } catch (err) {
-            console.error("Failed to copy: ", err);
-          }
-          console.log(element.innerText);
-        }
-      }
-
       copybutton.forEach((element) => {
         element.addEventListener("click", () => {
           fCopy();
@@ -96,6 +81,21 @@ function checkURL() {
       });
     }
   });
+}
+
+// button copy function //
+const copybutton = document.querySelectorAll(".copybutton");
+const copyText = document.querySelectorAll(".ourlink");
+
+async function fCopy() {
+  for (element of copyText) {
+    try {
+      await navigator.clipboard.writeText(element.innerText);
+    } catch (err) {
+      console.error("Failed to copy: ", err);
+    }
+    console.log(element.innerText);
+  }
 }
 
 //button shorton it //
